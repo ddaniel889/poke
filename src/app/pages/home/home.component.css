@@ -1,0 +1,31 @@
+.chart{
+  border-radius: 5px;
+  border: 1px solid #000;
+}
+.pokemon-table{
+  border-radius: 5px;
+  border: 1px solid #000;
+  margin-right: 15px !important;
+}
+.name{
+  color:#CF653E;
+  font-weight: bold;
+  font-size: 20px !important;
+}
+
+.text-right{
+  margin-left:5px !important;
+  text-align: center !important;
+  color: #3eadcf;
+}
+img{
+ font-size: 20px !important;
+ height: 120px;
+}
+.mat-elevation-z8{
+  margin-bottom: 35px !important;
+}
+.summary{
+  margin-top: 35px !important;
+}
+

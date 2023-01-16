@@ -4,30 +4,56 @@
 
 <div class="container">
   <h1 class="text-center">Pokemon</h1>
-
+  <br />
 
  <div class="row">
-  <div class="col-md-7">
-    <h3 class="text-center">Table</h3>
-    <table class="table table-striped" *ngIf="table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>See Pokemon</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr  *ngFor="let element of dataPokemon" >
-          <td > <span class="text-center"> {{element.name}}  </span></td>
-          <td > <span class="text-center" (click)="getOnePokemon(element.name)"> Detail </span></td>
-        <tr>
-      </tbody>
-    </table>
+  <div class="col-md-7 col-xs-12 pokemon-table">
+    <h2 class="text-center">Table</h2>
+
+   <hr>
+   <div class="header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Search name">
+    </mat-form-field>
+  </div>
+  <hr>
+   <div class="container mat-elevation-z8">
+
+    <mat-table [dataSource]="dataSource">
+
+      <ng-container matColumnDef="Name">
+        <mat-header-cell *matHeaderCellDef > Name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="See Pokemon">
+        <mat-header-cell *matHeaderCellDef > See Pokemon </mat-header-cell>
+        <mat-cell *matCellDef="let row" (click)="getOnePokemon(row.name)"> Detail </mat-cell>
+      </ng-container>
+
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]"></mat-paginator>
   </div>
 
-  <div class="col-md-3">
-    <h3 class="text-center">Detail</h3>
+  </div>
 
+  <div class="col-md-3 col-xs-12 chart">
+    <br />
+    <h2 class="text-center">Detail</h2>
+    <ul class="list-group" *ngIf="detail">
+      <li class="list-group-item text-center"><span class="name">{{pokemon.name}} </span></li>
+      <li class="list-group-item text-center">Tipo de Pokemon<span class="text-right">{{pokemon.types[0].type.name}}</span></li>
+      <li class="list-group-item text-center">Peso<span class="text-right">{{pokemon.weight}}</span></li>
+      <li class="list-group-item text-center">Estatura<span class="text-right">{{pokemon.height}}</span></li>
+      <li class="list-group-item text-center">Estatura<span class="text-right">{{pokemon.height}}</span></li>
+      <li class="list-group-item text-center">Imagen</li>
+      <li class="list-group-item text-center"> <img src="{{pokemon.sprites.front_default}}" /></li>
+    </ul>
 
   </div>
 
@@ -35,12 +61,28 @@
  </div>
 
  <div class="row">
-
-  <div class="col-md-12">
-    <h3 class="text-center">Summary</h3>
-
-
-
+  <div class="col-md-6 col-x-12 summary">
+    <br />
+    <h2 class="text-center">Summary</h2>
+    <table class="table table-striped" *ngIf="table">
+      <thead>
+        <tr>
+          <th class="text-center">Letter</th>
+          <th class="text-center">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!--tr  *ngFor="let element of dataPokemon" >
+          <td > <span class="text-center"> {{element.name}}  </span></td>
+          <td > <span class="text-center" (click)="getOnePokemon(element.name)"> Detail </span></td>
+        <tr-->
+          <tr>
+            <td > <span class="text-center"> A  </span></td>
+            <td > <span class="text-center"> 2 </span></td>
+          <tr>
+      </tbody>
+    </table>
+    <br />
   </div>
 
 
