@@ -2,6 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {PokemonService } from './../../service/pokemon.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +12,10 @@ import {MatTableDataSource} from '@angular/material/table';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  myControl = new FormControl('');
+  options: any[] = [];
+  filteredOptions!: Observable<any[]>;
+
   public displayedColumns = ['Name', 'See Pokemon'];
   public dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator :any = MatPaginator;
@@ -54,19 +61,23 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAll('/pokemon/?limit=1270');
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value || '')),
+    );
+  }
+
+  private _filter(value: any): string[] {
+    this.filterValue = this.filterValue.trim();
+    this.filterValue = value.toLowerCase();
+    this.dataSource.filter = this.filterValue;
+    return this.options.filter(option => option.name.toLowerCase().includes(this.filterValue));
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
 
-
-  applyFilter(event:any) {
-    this.filterValue = event.target.value;
-    this.filterValue = this.filterValue.trim();
-    this.filterValue = this.filterValue.toLowerCase();
-    this.dataSource.filter = this.filterValue;
-  }
 
   public getAll(url:string): void {
     this.pokemonService.getPokemon(url).subscribe(response => {
@@ -75,6 +86,7 @@ export class HomeComponent implements OnInit {
         this.dataSource.data = response.results;
         this.table = true;
         this.summaryPokemon(this.dataPokemon);
+        this.options = response.results;//['One', 'Two', 'Three'];
     });
 }
 

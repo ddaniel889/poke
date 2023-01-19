@@ -11,11 +11,24 @@
     <h2 class="text-center">Table</h2>
 
    <hr>
-   <div class="header">
-    <mat-form-field>
-      <input matInput [(ngModel)]="filterValue" (keyup)="applyFilter($event)" placeholder="Search name">
+  
+  <form class="example-form">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Search Name</mat-label>
+      <input type="text"
+             placeholder="search"
+             aria-label="Number"
+             matInput
+             [formControl]="myControl"
+             [(ngModel)]="filterValue"
+             [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name">
+          {{option.name}}
+        </mat-option>
+      </mat-autocomplete>
     </mat-form-field>
-  </div>
+  </form>
   <hr>
    <div class="container mat-elevation-z8">
 
