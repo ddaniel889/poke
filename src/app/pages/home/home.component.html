@@ -3,7 +3,7 @@
 
 
 <div class="container">
-  <h1 class="text-center">Pokemon</h1>
+  <h1 class="text-center title">Pokemon</h1>
   <br />
 
  <div class="row">
@@ -13,13 +13,13 @@
    <hr>
    <div class="header">
     <mat-form-field>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Search name">
+      <input matInput [(ngModel)]="filterValue" (keyup)="applyFilter($event)" placeholder="Search name">
     </mat-form-field>
   </div>
   <hr>
    <div class="container mat-elevation-z8">
 
-    <mat-table [dataSource]="dataSource">
+    <mat-table [dataSource]="dataSource" *ngIf="table">
 
       <ng-container matColumnDef="Name">
         <mat-header-cell *matHeaderCellDef > Name </mat-header-cell>
@@ -72,14 +72,114 @@
         </tr>
       </thead>
       <tbody>
-        <!--tr  *ngFor="let element of dataPokemon" >
-          <td > <span class="text-center"> {{element.name}}  </span></td>
-          <td > <span class="text-center" (click)="getOnePokemon(element.name)"> Detail </span></td>
-        <tr-->
           <tr>
-            <td > <span class="text-center"> A  </span></td>
-            <td > <span class="text-center"> 2 </span></td>
+            <td class="text-center"> <span> A </span></td>
+            <td span class="text-center"> <span> {{startA}} </span></td>
+          </tr>
           <tr>
+            <td class="text-center"><span> B  </span></td>
+            <td span class="text-center"> <span> {{startB}} </span></td>
+          </tr>
+          <tr>
+            <td class="text-center"><span>C</span></td>
+            <td span class="text-center"> <span> {{startC}} </span></td>
+          </tr>
+          <tr>
+            <td class="text-center"><span>D</span></td>
+            <td span class="text-center"><span>{{startD}} </span></td>
+          </tr>
+          <tr>
+            <td class="text-center"><span>E</span></td>
+            <td span class="text-center"><span>{{startE}} </span></td>
+          </tr>
+          <tr>
+            <td class="text-center"> <span>F</span></td>
+            <td span class="text-center"> <span> {{startF}} </span></td>
+          </tr>
+          <tr>
+            <td class="text-center"><span>G</span></td>
+            <td span class="text-center"><span>{{startG}} </span></td>
+          </tr>
+          <tr>
+            <td class="text-center"> <span>H</span></td>
+            <td span class="text-center"><span>{{startH}} </span></td>
+          </tr>
+          <tr>
+            <td class="text-center"><span>I</span></td>
+            <td span class="text-center"><span>{{startI}}</span></td>
+          </tr>
+          <tr>
+            <td class="text-center"> <span>J</span></td>
+            <td span class="text-center"><span>{{startJ}} </span></td>
+          </tr>
+          <tr>
+            <td class="text-center"> <span>K</span></td>
+            <td span class="text-center"><span> {{startK}}</span></td>
+          </tr>
+          <tr>
+            <td class="text-center"><span>L</span></td>
+            <td span class="text-center"> <span> {{startL}} </span></td>
+          </tr>
+          <tr>
+            <td class="text-center"><span>M</span></td>
+            <td span class="text-center"><span>{{startM}} </span></td>
+          </tr>
+          <tr>
+            <td class="text-center"> <span>N</span></td>
+            <td span class="text-center"> <span> {{startN}} </span></td>
+          </tr>
+          <tr>
+            <td class="text-center"> <span>Ñ</span></td>
+            <td span class="text-center"> <span>{{startN_}}</span></td>
+          </tr>
+          <tr>
+            <td class="text-center"> <span>O</span></td>
+            <td span class="text-center"><span>{{startO}}</span></td>
+          </tr>
+          <tr>
+            <td class="text-center"> <span>P</span></td>
+            <td span class="text-center"><span>{{startP}}</span></td>
+          </tr>
+          <tr>
+            <td class="text-center"> <span>Q</span></td>
+            <td span class="text-center"> <span>{{startQ}}</span></td>
+          </tr>
+          <tr>
+            <td class="text-center"> <span>R</span></td>
+            <td span class="text-center"> <span> {{startR}} </span></td>
+          </tr>
+          <tr>
+            <td class="text-center"> <span>S</span></td>
+            <td span class="text-center"> <span>{{startS}} </span></td>
+          </tr>
+          <tr>
+            <td class="text-center"> <span>T</span></td>
+            <td span class="text-center"><span>{{startT}}</span></td>
+          </tr>
+          <tr>
+            <td class="text-center"><span>U</span></td>
+            <td span class="text-center"><span>{{startU}} </span></td>
+          </tr>
+          <tr>
+            <td class="text-center"> <span>V</span></td>
+            <td span class="text-center"> <span>{{startY}} </span></td>
+          </tr>
+          <tr>
+            <td class="text-center"> <span>W</span></td>
+            <td span class="text-center"><span>{{startW}}</span></td>
+          </tr>
+          <tr>
+            <td class="text-center"> <span>X</span></td>
+            <td span class="text-center"><span>{{startX}} </span></td>
+          </tr>
+          <tr>
+            <td class="text-center"> <span>Y</span></td>
+            <td span class="text-center"> <span> {{startY}} </span></td>
+          </tr>
+          <tr>
+            <td class="text-center"> <span>Z</span></td>
+            <td span class="text-center"><span> {{startZ}} </span></td>
+          </tr>
       </tbody>
     </table>
     <br />
