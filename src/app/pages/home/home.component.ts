@@ -56,6 +56,10 @@ export class HomeComponent implements OnInit {
     this.getAll('/pokemon/?limit=1270');
   }
 
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
 
   applyFilter(event:any) {
     this.filterValue = event.target.value;
